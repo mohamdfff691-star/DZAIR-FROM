@@ -1,0 +1,6 @@
+{
+  "name": "DZAIR FORM",
+  "description": "المنصة الرقمية الشاملة لأتمتة الاستمارات الإدارية الجزائرية، دليل البوابات الحكومية، وتطوير أرباح مقاهي الإنترنت ومكاتب الخدمات (سيبار).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

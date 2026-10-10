@@ -1,0 +1,302 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+@layer base {
+  :root {
+    --color-bg: #080c14;
+    --color-text: #f1f5f9;
+  }
+
+  html.dark {
+    --color-bg: #080c14;
+    --color-text: #f1f5f9;
+    color-scheme: dark;
+  }
+
+  html.light {
+    --color-bg: #f8fafc;
+    --color-text: #0f172a;
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+/* Custom styled modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #080c14;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 242, 254, 0.1);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00f2fe;
+}
+
+/* Subtle futuristic tech grid - active only in Dark Mode */
+.dark .tech-grid-pattern {
+  background-image: radial-gradient(rgba(0, 242, 254, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* In Light Mode: Solid clean background with NO broken grid artifacts */
+.light .tech-grid-pattern {
+  background-image: none !important;
+  background-color: #f8fafc !important;
+}
+
+/* Glassmorphic Cards & Panels in Dark Mode */
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+}
+
+.dark .glass-panel-cyan {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  box-shadow: 0 0 25px -5px rgba(0, 242, 254, 0.15);
+  color: #f1f5f9;
+}
+
+/* =========================================================================
+   LIGHT MODE TOTAL PURIFICATION & HIGH-CONTRAST CONVERSION
+   ========================================================================= */
+
+html.light {
+  color-scheme: light;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html.light body,
+html.light #root,
+html.light main {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* 1. SOLID CLEAN BACKGROUND: Eliminate broken grid patterns and dark residues */
+html.light [class*="bg-gradient-to-tr"][class*="blur-"],
+html.light [class*="bg-cyan-500/15"][class*="blur-"],
+html.light [class*="bg-blue-600/10"][class*="blur-"] {
+  display: none !important;
+}
+
+/* 2. DYNAMIC TEXT COLORS: Convert any text that was white to high-contrast slate */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6 {
+  color: #0f172a !important;
+}
+
+/* High contrast text overrides (excluding elements inside vibrant colored buttons) */
+html.light .text-white:not(
+  button.bg-cyan-500 *, 
+  a.bg-cyan-500 *, 
+  button[class*="from-cyan"] *, 
+  a[class*="from-cyan"] *, 
+  span.bg-cyan-500,
+  span.bg-cyan-600,
+  span.bg-emerald-500,
+  span.bg-emerald-600
+),
+html.light .text-slate-100,
+html.light .text-slate-200 {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-300 {
+  color: #1e293b !important;
+}
+
+html.light .text-slate-400 {
+  color: #475569 !important;
+}
+
+html.light .text-slate-500 {
+  color: #64748b !important;
+}
+
+html.light .text-cyan-300 {
+  color: #0284c7 !important;
+}
+
+/* 3. CARDS & CONTAINERS: Convert dark glassmorphic into solid crisp white cards */
+html.light .glass-panel {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02) !important;
+}
+
+html.light .glass-panel-cyan {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(2, 132, 199, 0.3) !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 25px -4px rgba(2, 132, 199, 0.1) !important;
+}
+
+/* Convert dark containers into clean white or light slate surfaces */
+html.light .bg-slate-900:not(
+  button.bg-cyan-500, 
+  a.bg-cyan-500, 
+  button[class*="from-cyan"], 
+  a[class*="from-cyan"]
+),
+html.light .bg-slate-900\/90,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/70,
+html.light .bg-slate-900\/60,
+html.light .bg-slate-900\/50,
+html.light .bg-slate-950,
+html.light .bg-slate-950\/90,
+html.light .bg-slate-950\/80,
+html.light .bg-slate-950\/70,
+html.light .bg-slate-950\/60,
+html.light .bg-slate-950\/40,
+html.light .bg-\[\#0a0f1d\],
+html.light .bg-\[\#080c14\],
+html.light .bg-\[\#060910\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html.light .bg-slate-800,
+html.light .bg-slate-800\/80,
+html.light .bg-slate-800\/60,
+html.light .bg-slate-800\/50,
+html.light .bg-slate-800\/40 {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+/* Badges in light mode */
+html.light .bg-cyan-950,
+html.light .bg-cyan-950\/80,
+html.light .bg-cyan-950\/70,
+html.light .bg-cyan-950\/60,
+html.light .bg-cyan-950\/50,
+html.light .bg-cyan-950\/30 {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #bae6fd !important;
+}
+
+html.light .bg-emerald-950,
+html.light .bg-emerald-950\/80,
+html.light .bg-emerald-950\/60,
+html.light .bg-emerald-950\/40 {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+  border-color: #a7f3d0 !important;
+}
+
+/* Border overrides in light mode */
+html.light .border-slate-800,
+html.light .border-slate-800\/80,
+html.light .border-slate-800\/60,
+html.light .border-slate-700,
+html.light .border-slate-700\/80,
+html.light .border-slate-700\/60 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Light mode modals */
+html.light .bg-black\/80,
+html.light .bg-black\/85 {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* High contrast inputs and text for light mode */
+.light input,
+.light select,
+.light textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light input:focus,
+.light select:focus,
+.light textarea:focus {
+  background-color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2) !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Official Algerian A4 Document Print Formatting */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .no-print,
+  nav,
+  footer,
+  aside,
+  button,
+  .print-hide {
+    display: none !important;
+  }
+
+  .printable-area {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 auto !important;
+    padding: 15mm !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+}
